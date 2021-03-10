@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "experimentalDecorators": true,
+      "esModuleInterop": true,
+      "baseUrl": "./src",
+      "rootDir": ".",
+      "jsx": "react",
+      "allowJs": true,
+      "lib": ["DOM", "ESNext"],
+      "strict": true,
+      "types": ["node"]
+    },
+    "exclude": ["node_modules", "mock", "coverage", "dist", "**/*.test.js"],
+    "include": ["global.d.ts", "src/**/*.ts", "src/**/*.tsx"],
+}
