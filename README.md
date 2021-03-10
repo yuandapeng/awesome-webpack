@@ -1,0 +1,2 @@
+# awesome-webpack
+webpack5
