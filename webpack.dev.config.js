@@ -135,7 +135,7 @@ const config  = {
 		contentBase: path.join(__dirname, 'dist'),
 		host: '127.0.0.1',
 	    hot: true,
-		// quiet: true
+		quiet: true
 	},
 	externals: {
 		'react': 'React',
