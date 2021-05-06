@@ -4,6 +4,7 @@ const glob = require('glob');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const generaterConfig = ()  => {
 	let files = glob.sync('src/**/index.{tsx,ts,js,jsx}');
 	let entries = {};
@@ -123,13 +124,16 @@ const config  = {
 		new MiniCssExtractPlugin({
 			filename: '[name]_[fullhash].css',
 			chunkFilename: '[name]_[fullhash].css',
-	    })
+	    }),
+		new FriendlyErrorsWebpackPlugin(),
 	].concat(htmlWebpackPlugins),
 	devServer: {
 		port: 3001,
 		open: true,
 		contentBase: path.join(__dirname, 'dist'),
 		host: '127.0.0.1',
+	    hot: true,
+		quiet: true
 	},
 	externals: {
 		'react': 'React',
