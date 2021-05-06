@@ -5,6 +5,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const ErrorOverlayWebpackPlugin = require('error-overlay-webpack-plugin');
 const generaterConfig = ()  => {
 	let files = glob.sync('src/**/index.{tsx,ts,js,jsx}');
 	let entries = {};
@@ -126,6 +127,7 @@ const config  = {
 			chunkFilename: '[name]_[fullhash].css',
 	    }),
 		new FriendlyErrorsWebpackPlugin(),
+		new ErrorOverlayWebpackPlugin(),
 	].concat(htmlWebpackPlugins),
 	devServer: {
 		port: 3001,
@@ -133,7 +135,7 @@ const config  = {
 		contentBase: path.join(__dirname, 'dist'),
 		host: '127.0.0.1',
 	    hot: true,
-		quiet: true
+		// quiet: true
 	},
 	externals: {
 		'react': 'React',
