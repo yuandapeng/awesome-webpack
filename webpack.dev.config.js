@@ -2,6 +2,7 @@
 
 const glob = require('glob');
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
@@ -128,6 +129,10 @@ const config  = {
 	    }),
 		new FriendlyErrorsWebpackPlugin(),
 		new ErrorOverlayWebpackPlugin(),
+		// 为每个 chunk 文件头部添加 banner
+		new webpack.BannerPlugin({
+			banner: "fullhash:[fullhash], chunkhash:[chunkhash], name:[name], base:[base], query:[query], file:[file]",
+		}),
 	].concat(htmlWebpackPlugins),
 	devServer: {
 		port: 3001,
@@ -141,6 +146,14 @@ const config  = {
 		'react': 'React',
 		'react-dom': 'ReactDOM',
 	},
+	watchOptions: {
+        //检测修改的时间，以毫秒为单位
+        poll: 1000,
+        //防止重复保存而发生重复编译错误。这里设置的500是半秒内重复保存，不进行打包操作
+        aggregateTimeout: 500,
+        //不监听的目录
+        ignored:/node_modules/
+    }
 };
 
 module.exports = config;
